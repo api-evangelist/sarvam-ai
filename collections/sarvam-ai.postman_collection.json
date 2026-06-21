@@ -1,0 +1,224 @@
+{
+  "info": {
+    "_postman_id": "a7f3c1d2-5b6e-4a9c-8d2f-1e4b7c9a0d3e",
+    "name": "Sarvam AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Sarvam AI, India's full-stack sovereign AI platform: chat completions over Indic LLMs, speech-to-text, speech-to-text-translate, text-to-speech, translate, transliterate, and language identification. All requests authenticate with an api-subscription-key header.\n\nContact: https://www.sarvam.ai",
+      "type": "text/plain"
+    }
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-subscription-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiSubscriptionKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sarvam.ai",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Create a chat completion",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "api-subscription-key", "value": "{{apiSubscriptionKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat/completions",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "chat", "completions"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"model\": \"sarvam-m\",\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"Namaste! Explain UPI in one sentence.\" }\n  ],\n  \"temperature\": 0.7,\n  \"stream\": false\n}"
+            },
+            "description": "Generates a model response using Sarvam's Indic LLMs (sarvam-m, sarvam-30b, sarvam-105b). Set stream=true for SSE streaming."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Speech to Text",
+      "item": [
+        {
+          "name": "Transcribe audio to text",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "api-subscription-key", "value": "{{apiSubscriptionKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/speech-to-text",
+              "host": ["{{baseUrl}}"],
+              "path": ["speech-to-text"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": [] },
+                { "key": "model", "value": "saarika:v2.5", "type": "text" },
+                { "key": "language_code", "value": "hi-IN", "type": "text" }
+              ]
+            },
+            "description": "Transcribes an audio file in an Indian language using the Saaras or Saarika models."
+          },
+          "response": []
+        },
+        {
+          "name": "Transcribe and translate audio to English",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "api-subscription-key", "value": "{{apiSubscriptionKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/speech-to-text-translate",
+              "host": ["{{baseUrl}}"],
+              "path": ["speech-to-text-translate"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": [] },
+                { "key": "model", "value": "saaras:v2.5", "type": "text" }
+              ]
+            },
+            "description": "Transcribes Indic-language audio and translates the result into English using the Saaras family of models."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Text to Speech",
+      "item": [
+        {
+          "name": "Convert text to speech",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "api-subscription-key", "value": "{{apiSubscriptionKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/text-to-speech",
+              "host": ["{{baseUrl}}"],
+              "path": ["text-to-speech"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"text\": \"नमस्ते, आप कैसे हैं?\",\n  \"target_language_code\": \"hi-IN\",\n  \"model\": \"bulbul:v3\",\n  \"speaker\": \"shubh\",\n  \"output_audio_codec\": \"wav\"\n}"
+            },
+            "description": "Synthesizes natural speech for Indian languages using the Bulbul models. Returns base64-encoded audio."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Translate",
+      "item": [
+        {
+          "name": "Translate text between Indian languages",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "api-subscription-key", "value": "{{apiSubscriptionKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/translate",
+              "host": ["{{baseUrl}}"],
+              "path": ["translate"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"input\": \"How are you?\",\n  \"source_language_code\": \"en-IN\",\n  \"target_language_code\": \"hi-IN\",\n  \"model\": \"mayura:v1\"\n}"
+            },
+            "description": "Translates text across Indian languages using Mayura or Sarvam-Translate."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transliterate",
+      "item": [
+        {
+          "name": "Transliterate text between scripts",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "api-subscription-key", "value": "{{apiSubscriptionKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transliterate",
+              "host": ["{{baseUrl}}"],
+              "path": ["transliterate"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"input\": \"namaste\",\n  \"source_language_code\": \"en-IN\",\n  \"target_language_code\": \"hi-IN\",\n  \"numerals_format\": \"international\"\n}"
+            },
+            "description": "Converts text between scripts while preserving the same language."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Language Identification",
+      "item": [
+        {
+          "name": "Identify the language of text",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "api-subscription-key", "value": "{{apiSubscriptionKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/text-lid",
+              "host": ["{{baseUrl}}"],
+              "path": ["text-lid"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"input\": \"आप कैसे हैं?\"\n}"
+            },
+            "description": "Detects the language and script of input text, returning BCP-47 language and script codes."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

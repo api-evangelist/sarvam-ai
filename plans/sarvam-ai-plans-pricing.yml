@@ -1,0 +1,170 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Sarvam AI
+providerId: sarvam-ai
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- LLM
+- Speech to Text
+- Text to Speech
+- Translation
+- Indian Languages
+- Plans
+description: >-
+  Sarvam AI uses a usage-based, pay-as-you-go pricing model. LLM chat is billed
+  per 1M tokens (separate input, cached-input, and output rates per model).
+  Speech-to-text and speech-to-text-translate are billed per hour of audio.
+  Text-to-speech, translation, and transliteration are billed per 10,000
+  characters, and language identification per 10,000 characters. Published
+  rates are in Indian Rupees (INR); every account starts with free credits.
+notes: >-
+  Rates below are as published on the Sarvam AI pricing pages in INR and are
+  not reconciled; verify the current model catalog, INR rates, and any
+  USD equivalents on the Sarvam pricing page during reconciliation.
+sources:
+- https://www.sarvam.ai/api-pricing
+- https://docs.sarvam.ai/api-reference-docs/pricing
+- https://docs.sarvam.ai/api-reference-docs/getting-started/pricing
+plans:
+- id: sarvam-ai-pay-as-you-go
+  name: Pay-as-you-go
+  type: usage
+  description: >-
+    Token-, character-, and hour-metered usage across all Sarvam AI APIs with
+    free starting credits and no monthly minimum.
+  entries:
+  - label: Sarvam-30B Chat (LLM)
+    name: sarvam_30b
+    type: usage
+    metric: tokens
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: "₹2.5 input / ₹1.5 cached input / ₹10 output per 1M tokens"
+    userMultiplied: false
+  - label: Sarvam-105B Chat (LLM)
+    name: sarvam_105b
+    type: usage
+    metric: tokens
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: "₹4 input / ₹2.5 cached input / ₹16 output per 1M tokens"
+    userMultiplied: false
+  - label: Speech-to-Text
+    name: speech_to_text
+    type: usage
+    metric: hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: "₹30 per hour of audio (₹45 with diarization)"
+    userMultiplied: false
+  - label: Speech-to-Text & Translate
+    name: speech_to_text_translate
+    type: usage
+    metric: hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: "₹30 per hour of audio (₹45 with diarization)"
+    userMultiplied: false
+  - label: Text-to-Speech (Bulbul v3)
+    name: tts_bulbul_v3
+    type: usage
+    metric: characters
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 10000
+    price: "₹30 per 10,000 characters (Bulbul v2: ₹15)"
+    userMultiplied: false
+  - label: Translate (Mayura / Sarvam-Translate)
+    name: translate
+    type: usage
+    metric: characters
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 10000
+    price: "₹20 per 10,000 characters"
+    userMultiplied: false
+  - label: Transliterate
+    name: transliterate
+    type: usage
+    metric: characters
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 10000
+    price: "₹20 per 10,000 characters"
+    userMultiplied: false
+  - label: Language Identification
+    name: language_id
+    type: usage
+    metric: characters
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 10000
+    price: "₹3.50 per 10,000 characters"
+    userMultiplied: false
+  elements:
+  - name: Chat Completions (LLM)
+  - name: Speech-to-Text
+  - name: Speech-to-Text Translate
+  - name: Text-to-Speech
+  - name: Translate
+  - name: Transliterate
+  - name: Language Identification
+- id: sarvam-ai-free-credits
+  name: Free Credits
+  type: free
+  description: >-
+    Every new account starts with free credits to evaluate the APIs before
+    moving to pay-as-you-go usage.
+  entries:
+  - label: Starting Credits
+    name: free_credits
+    type: free
+    metric: credits
+    limit: 1000
+    timeFrame: lifetime
+    geo: global
+    unit: 1
+    price: "₹1,000 in free credits (verify current amount)"
+    userMultiplied: false
+  elements:
+  - name: All Sarvam AI APIs
+- id: sarvam-ai-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume commitments, sovereign / on-prem deployment options, dedicated
+    support, and negotiated terms. Contact Sarvam AI sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Sovereign / On-Prem Deployment
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

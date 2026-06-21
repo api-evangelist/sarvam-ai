@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Sarvam AI
+providerId: sarvam-ai
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- LLM
+- Speech to Text
+- Text to Speech
+- Translation
+- Indian Languages
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Sarvam AI enforces per-account rate limits expressed primarily as requests
+  per minute (RPM), applied per product (chat LLM, speech-to-text,
+  text-to-speech, translate). Limits are enforced at the account level - all
+  API keys on an account share the same pool - and rise with plan tier
+  (Starter, Pro, Business, Enterprise). The Starter plan allows 60 RPM for the
+  chat LLM API. Specific per-product values for higher tiers are not reconciled
+  in this artifact.
+notes: >-
+  Verify current per-product RPM and any per-minute character/audio limits on
+  the Sarvam AI dashboard Rate Limits page during reconciliation; values
+  change as accounts move between Starter, Pro, Business, and Enterprise plans.
+sources:
+- https://docs.sarvam.ai/api-reference-docs/ratelimits
+- https://docs.sarvam.ai/api-reference-docs/getting-started/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (RPM) - Chat LLM
+  scope: account
+  metric: requests
+  limit: 60 on Starter; higher on paid tiers
+  notes: Per-account RPM for the chat completions API; shared across all keys.
+- name: Requests Per Minute (RPM) - Speech-to-Text
+  scope: account
+  metric: requests
+  limit: see provider dashboard
+  notes: Per-account RPM for speech-to-text and speech-to-text-translate; varies by tier.
+- name: Requests Per Minute (RPM) - Text-to-Speech
+  scope: account
+  metric: requests
+  limit: see provider dashboard
+  notes: Per-account RPM for text-to-speech; varies by tier.
+- name: Requests Per Minute (RPM) - Translate / Transliterate
+  scope: account
+  metric: requests
+  limit: see provider dashboard
+  notes: Per-account RPM for translate, transliterate, and language ID; varies by tier.
+policies:
+- name: Account-Level Enforcement
+  description: Limits apply to the account as a whole; all API keys share the same rate-limit pool.
+- name: Tiered Limits
+  description: Limits raise as accounts move from Starter to Pro, Business, and Enterprise plans.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sarvam AI API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "api-subscription-key",
+      "value": "{{apiSubscriptionKey}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a chat completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model\": \"sarvam-m\",\n  \"messages\": [ { \"role\": \"user\", \"content\": \"Namaste!\" } ],\n  \"stream\": false\n}"
+            }
+          },
+          "docs": "Generates a model response using Sarvam's Indic LLMs (sarvam-m, sarvam-30b, sarvam-105b). Set stream=true for SSE streaming."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Speech to Text",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transcribe audio to text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Transcribes an audio file in an Indian language using the Saaras or Saarika models."
+        },
+        {
+          "info": {
+            "name": "Transcribe and translate audio to English",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text-translate",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Transcribes Indic-language audio and translates the result into English using the Saaras family of models."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Text to Speech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert text to speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-to-speech",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"text\": \"नमस्ते\",\n  \"target_language_code\": \"hi-IN\",\n  \"model\": \"bulbul:v3\",\n  \"speaker\": \"shubh\"\n}"
+            }
+          },
+          "docs": "Synthesizes natural speech for Indian languages using the Bulbul models. Returns base64-encoded audio."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Translate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Translate text between Indian languages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/translate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"input\": \"How are you?\",\n  \"source_language_code\": \"en-IN\",\n  \"target_language_code\": \"hi-IN\",\n  \"model\": \"mayura:v1\"\n}"
+            }
+          },
+          "docs": "Translates text across Indian languages using Mayura or Sarvam-Translate."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transliterate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transliterate text between scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/transliterate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"input\": \"namaste\",\n  \"source_language_code\": \"en-IN\",\n  \"target_language_code\": \"hi-IN\"\n}"
+            }
+          },
+          "docs": "Converts text between scripts while preserving the same language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Language Identification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Identify the language of text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-lid",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"input\": \"आप कैसे हैं?\"\n}"
+            }
+          },
+          "docs": "Detects the language and script of input text, returning BCP-47 language and script codes."
+        }
+      ]
+    }
+  ]
+}

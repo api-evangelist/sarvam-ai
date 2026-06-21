@@ -1,0 +1,119 @@
+asyncapi: '2.6.0'
+id: 'urn:ai:sarvam:v1:chat-completions:sse'
+info:
+  title: Sarvam AI Chat Completions Streaming (HTTP + SSE)
+  version: '1.0.0'
+  description: |
+    AsyncAPI 2.6 description of Sarvam AI's **chat completion streaming**
+    surface.
+
+    Sarvam's chat completions endpoint streams partial results as **HTTP
+    Server-Sent Events (SSE)** over the same REST endpoint
+    (`POST /v1/chat/completions`) when the request body sets `stream: true`.
+    SSE is a one-way, server-to-client HTTP streaming channel; it is **not**
+    WebSocket.
+
+    Tokens are sent as data-only server-sent events as they become available,
+    with the stream terminated by a `data: [DONE]` message.
+
+    This AsyncAPI document models only the streamed events emitted by Sarvam's
+    SSE response. The request body itself (model, messages, tools, etc.) is
+    modeled in the companion OpenAPI document at
+    `openapi/sarvam-ai-openapi.yml`.
+
+    Sarvam also documents WebSocket-based real-time streaming for
+    speech-to-text and text-to-speech; those audio WebSocket channels are not
+    modeled here, which focuses on the chat SSE surface.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
+  license:
+    name: API documentation - Sarvam AI Terms of Service
+    url: https://www.sarvam.ai/terms-of-service
+  x-transport-notes:
+    transport: HTTP Server-Sent Events (SSE)
+    protocol: https
+    direction: server-to-client (one-way)
+    mediaType: text/event-stream
+    triggeredBy: 'POST https://api.sarvam.ai/v1/chat/completions with request body { "stream": true }'
+    terminator: 'data: [DONE]'
+    notWebSocket: true
+    source: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+defaultContentType: text/event-stream
+servers:
+  sarvam:
+    url: api.sarvam.ai
+    protocol: https
+    description: |
+      Sarvam AI's REST base. Chat completion streaming is delivered as HTTP
+      Server-Sent Events over this base when `stream: true` is set on the JSON
+      request body. AsyncAPI 2.6 does not define a dedicated SSE protocol
+      identifier; `https` is used here and the SSE transport is documented in
+      `info.x-transport-notes` and on each channel.
+    security:
+      - apiSubscriptionKey: []
+channels:
+  /v1/chat/completions:
+    description: |
+      Chat completion SSE stream. The client opens this channel by issuing
+      `POST /v1/chat/completions` with `Content-Type: application/json`,
+      `api-subscription-key` header, and a JSON body containing `stream: true`.
+      The server responds with `Content-Type: text/event-stream` and emits a
+      sequence of `data:` lines, each carrying one JSON-serialized
+      `chat.completion.chunk` object, followed by a final `data: [DONE]` line.
+    bindings:
+      http:
+        type: response
+        method: POST
+    subscribe:
+      operationId: receiveChatCompletionChunk
+      summary: Receive streamed chat completion chunks via SSE.
+      message:
+        $ref: '#/components/messages/ChatCompletionChunk'
+components:
+  securitySchemes:
+    apiSubscriptionKey:
+      type: httpApiKey
+      in: header
+      name: api-subscription-key
+      description: API subscription key created in the Sarvam AI dashboard.
+  messages:
+    ChatCompletionChunk:
+      name: chatCompletionChunk
+      title: Chat Completion Chunk
+      summary: One server-sent event carrying an incremental chat completion delta.
+      contentType: text/event-stream
+      payload:
+        $ref: '#/components/schemas/ChatCompletionChunk'
+  schemas:
+    ChatCompletionChunk:
+      type: object
+      description: A single SSE data payload (chat.completion.chunk).
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: chat.completion.chunk
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              delta:
+                type: object
+                properties:
+                  role:
+                    type: string
+                  content:
+                    type: string
+              finish_reason:
+                type: string
+                nullable: true

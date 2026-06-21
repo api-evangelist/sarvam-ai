@@ -1,0 +1,70 @@
+aid: sarvam-ai
+name: Sarvam AI
+review:
+  question: Does Sarvam AI expose a documented public WebSocket API?
+  answer: true
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: true
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP Server-Sent Events (SSE) is in-scope for
+    AsyncAPI modeling. An AsyncAPI 2.6 document was created at
+    asyncapi/sarvam-ai-asyncapi.yml describing the chat completion SSE stream
+    (POST /v1/chat/completions with stream=true). Sarvam additionally
+    documents real-time streaming WebSocket surfaces for speech-to-text and
+    text-to-speech; those WebSocket channels are noted here but the primary
+    REST + SSE chat surface is what is modeled in this artifact.
+findings:
+  summary: |
+    Sarvam AI's primary surface is a REST (HTTPS) API under
+    https://api.sarvam.ai authenticated with an api-subscription-key header.
+    Chat completions stream via HTTP Server-Sent Events (SSE) when the request
+    body sets stream=true. Beyond REST + SSE, Sarvam documents real-time
+    streaming endpoints for speech-to-text (real-time / streaming audio) and
+    text-to-speech (HTTP stream or WebSocket), so a documented WebSocket
+    surface does exist for the audio products. The core text, translation,
+    transliterate, and language-identification endpoints are single-response
+    REST calls.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.sarvam.ai
+      documented: true
+    - protocol: SSE
+      scheme: https
+      note: Server-Sent Events delivered over the REST chat completions endpoint when stream=true. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: true
+      note: Documented for real-time speech-to-text streaming and text-to-speech streaming. Not used for the text/translation/LID REST endpoints.
+  endpointsConfirmedRest:
+    - POST https://api.sarvam.ai/v1/chat/completions
+    - POST https://api.sarvam.ai/speech-to-text
+    - POST https://api.sarvam.ai/speech-to-text-translate
+    - POST https://api.sarvam.ai/text-to-speech
+    - POST https://api.sarvam.ai/translate
+    - POST https://api.sarvam.ai/transliterate
+    - POST https://api.sarvam.ai/text-lid
+sources:
+  - url: https://docs.sarvam.ai/api-reference-docs/introduction
+    type: Documentation
+    note: Lists REST base URL https://api.sarvam.ai and the api-subscription-key header; enumerates chat, speech, translate, transliterate, and detect-language endpoints.
+  - url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+    type: APIReference
+    note: Chat completions support stream=true, delivering SSE chunks.
+  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
+    type: Documentation
+    note: Documents REST, Batch, and Streaming (real-time) speech-to-text API types.
+  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
+    type: Documentation
+    note: Documents REST and Streaming (HTTP stream or WebSocket) text-to-speech API types.
+actions:
+  asyncapiPath: asyncapi/sarvam-ai-asyncapi.yml
+  apisYmlUpdated: true
+  reason: |
+    Sarvam exposes both SSE (chat) and WebSocket (real-time audio) async
+    surfaces. An AsyncAPI 2.6 document was authored for the chat completion
+    SSE stream, with HTTP + SSE transport documented explicitly so SSE is
+    never misrepresented as WebSocket; the documented audio WebSocket surfaces
+    are referenced in findings for completeness.
