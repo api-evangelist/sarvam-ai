@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sarvam-ai-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiSubscriptionKey
+  type: apiKey
+  in: header
+  parameter: api-subscription-key
+  description: API subscription key created in the Sarvam AI dashboard.
+  sources:
+  - openapi/sarvam-ai-openapi.yml

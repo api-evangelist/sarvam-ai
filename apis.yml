@@ -166,6 +166,10 @@ apis:
     BCP-47 language and script codes for routing to the appropriate Indic-language
     model.
 common:
+- type: DomainSecurity
+  url: security/sarvam-ai-domain-security.yml
+- type: Authentication
+  url: authentication/sarvam-ai-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/sarvamai
 - type: LinkedIn
@@ -180,6 +184,8 @@ common:
   url: rate-limits/sarvam-ai-rate-limits.yml
 - type: FinOps
   url: finops/sarvam-ai-finops.yml
+- type: Blog
+  url: https://www.sarvam.ai/blogs
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
