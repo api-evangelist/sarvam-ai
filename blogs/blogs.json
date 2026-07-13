@@ -1,0 +1,14 @@
+{
+  "repo": "sarvam-ai",
+  "feeds": [
+    {
+      "source": "https://www.sarvam.ai/blogs",
+      "feed_url": "https://www.sarvam.ai/blogs",
+      "title": "Sarvam AI Blog",
+      "saved": 0,
+      "error": "parse_failed"
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 21
+}
