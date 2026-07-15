@@ -166,6 +166,8 @@ apis:
     BCP-47 language and script codes for routing to the appropriate Indic-language
     model.
 common:
+- type: AgenticAccess
+  url: agentic-access/sarvam-ai-agentic-access.yml
 - type: DomainSecurity
   url: security/sarvam-ai-domain-security.yml
 - type: Authentication
