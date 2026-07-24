@@ -1,0 +1,153 @@
+openapi: 3.0.1
+info:
+  title: Sarvam AI Chat Text to Speech API
+  description: REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.
+  termsOfService: https://www.sarvam.ai/terms-of-service
+  contact:
+    name: Sarvam AI Support
+    url: https://www.sarvam.ai
+  version: '1.0'
+servers:
+- url: https://api.sarvam.ai
+security:
+- ApiSubscriptionKey: []
+tags:
+- name: Text to Speech
+paths:
+  /text-to-speech:
+    post:
+      operationId: convertTextToSpeech
+      tags:
+      - Text to Speech
+      summary: Convert text to speech
+      description: Synthesizes natural speech for Indian languages using the Bulbul models (v2, v3) with 30+ speakers and configurable pace, pitch, sample rate, and output audio codec. Returns base64-encoded audio.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextToSpeechResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    TextToSpeechResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        audios:
+          type: array
+          items:
+            type: string
+            description: Base64-encoded audio.
+    TextToSpeechRequest:
+      type: object
+      required:
+      - text
+      - target_language_code
+      properties:
+        text:
+          type: string
+          description: Max 2500 chars (bulbul:v3) or 1500 chars (bulbul:v2).
+        target_language_code:
+          type: string
+          enum:
+          - bn-IN
+          - en-IN
+          - gu-IN
+          - hi-IN
+          - kn-IN
+          - ml-IN
+          - mr-IN
+          - od-IN
+          - pa-IN
+          - ta-IN
+          - te-IN
+        speaker:
+          type: string
+          description: Voice name; default shubh (v3) or anushka (v2).
+        model:
+          type: string
+          enum:
+          - bulbul:v2
+          - bulbul:v3
+          default: bulbul:v3
+        pitch:
+          type: number
+          description: -0.75 to 0.75. bulbul:v2 only.
+        pace:
+          type: number
+          default: 1.0
+          description: v3 0.5-2.0; v2 0.3-3.0.
+        loudness:
+          type: number
+          description: 0.3 to 3.0. bulbul:v2 only.
+        speech_sample_rate:
+          type: integer
+          default: 24000
+          enum:
+          - 8000
+          - 16000
+          - 22050
+          - 24000
+          - 32000
+          - 44100
+          - 48000
+        enable_preprocessing:
+          type: boolean
+          default: false
+        temperature:
+          type: number
+          default: 0.6
+          description: 0.01 to 2.0. v3 only.
+        output_audio_codec:
+          type: string
+          default: wav
+          enum:
+          - mp3
+          - linear16
+          - mulaw
+          - alaw
+          - opus
+          - flac
+          - aac
+          - wav
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid api-subscription-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiSubscriptionKey:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+      description: API subscription key created in the Sarvam AI dashboard.

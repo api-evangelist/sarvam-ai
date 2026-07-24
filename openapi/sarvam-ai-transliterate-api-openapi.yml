@@ -1,0 +1,108 @@
+openapi: 3.0.1
+info:
+  title: Sarvam AI Chat Transliterate API
+  description: REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.
+  termsOfService: https://www.sarvam.ai/terms-of-service
+  contact:
+    name: Sarvam AI Support
+    url: https://www.sarvam.ai
+  version: '1.0'
+servers:
+- url: https://api.sarvam.ai
+security:
+- ApiSubscriptionKey: []
+tags:
+- name: Transliterate
+paths:
+  /transliterate:
+    post:
+      operationId: transliterateText
+      tags:
+      - Transliterate
+      summary: Transliterate text between scripts
+      description: Converts text between scripts while preserving the same language, with spoken-form conversion and international or native numeral formatting.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransliterateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransliterateResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+    TransliterateResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        transliterated_text:
+          type: string
+        source_language_code:
+          type: string
+    TransliterateRequest:
+      type: object
+      required:
+      - input
+      - source_language_code
+      - target_language_code
+      properties:
+        input:
+          type: string
+        source_language_code:
+          type: string
+        target_language_code:
+          type: string
+        numerals_format:
+          type: string
+          enum:
+          - international
+          - native
+          default: international
+        spoken_form:
+          type: boolean
+          default: false
+        spoken_form_numerals_language:
+          type: string
+          enum:
+          - english
+          - native
+          default: native
+  responses:
+    Unauthorized:
+      description: Missing or invalid api-subscription-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiSubscriptionKey:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+      description: API subscription key created in the Sarvam AI dashboard.

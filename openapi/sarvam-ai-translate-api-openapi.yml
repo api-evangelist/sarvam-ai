@@ -1,0 +1,124 @@
+openapi: 3.0.1
+info:
+  title: Sarvam AI Chat Translate API
+  description: REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.
+  termsOfService: https://www.sarvam.ai/terms-of-service
+  contact:
+    name: Sarvam AI Support
+    url: https://www.sarvam.ai
+  version: '1.0'
+servers:
+- url: https://api.sarvam.ai
+security:
+- ApiSubscriptionKey: []
+tags:
+- name: Translate
+paths:
+  /translate:
+    post:
+      operationId: translateText
+      tags:
+      - Translate
+      summary: Translate text between Indian languages
+      description: Translates text across Indian languages using Mayura (12 languages, multiple tones) or Sarvam-Translate (all 22 scheduled languages), with tone modes, output-script control, and numeral formatting.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslateResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+    TranslateRequest:
+      type: object
+      required:
+      - input
+      - source_language_code
+      - target_language_code
+      properties:
+        input:
+          type: string
+          description: Text to translate (up to ~1000-2000 chars).
+        source_language_code:
+          type: string
+          description: BCP-47 code or "auto" for detection.
+        target_language_code:
+          type: string
+        speaker_gender:
+          type: string
+          enum:
+          - Male
+          - Female
+        mode:
+          type: string
+          enum:
+          - formal
+          - modern-colloquial
+          - classic-colloquial
+          - code-mixed
+        model:
+          type: string
+          enum:
+          - mayura:v1
+          - sarvam-translate:v1
+        output_script:
+          type: string
+          enum:
+          - roman
+          - fully-native
+          - spoken-form-in-native
+        numerals_format:
+          type: string
+          enum:
+          - international
+          - native
+          default: international
+    TranslateResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        translated_text:
+          type: string
+        source_language_code:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid api-subscription-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiSubscriptionKey:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+      description: API subscription key created in the Sarvam AI dashboard.

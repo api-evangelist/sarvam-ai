@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  title: Sarvam AI Chat Language Identification API
+  description: REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.
+  termsOfService: https://www.sarvam.ai/terms-of-service
+  contact:
+    name: Sarvam AI Support
+    url: https://www.sarvam.ai
+  version: '1.0'
+servers:
+- url: https://api.sarvam.ai
+security:
+- ApiSubscriptionKey: []
+tags:
+- name: Language Identification
+paths:
+  /text-lid:
+    post:
+      operationId: identifyLanguage
+      tags:
+      - Language Identification
+      summary: Identify the language of text
+      description: Automatically detects the language and script of input text, returning BCP-47 language and script codes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LanguageIdRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LanguageIdResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+    LanguageIdResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        language_code:
+          type: string
+        script_code:
+          type: string
+    LanguageIdRequest:
+      type: object
+      required:
+      - input
+      properties:
+        input:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid api-subscription-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiSubscriptionKey:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+      description: API subscription key created in the Sarvam AI dashboard.

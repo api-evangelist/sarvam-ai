@@ -1,0 +1,164 @@
+openapi: 3.0.1
+info:
+  title: Sarvam AI Chat Speech to Text API
+  description: REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.
+  termsOfService: https://www.sarvam.ai/terms-of-service
+  contact:
+    name: Sarvam AI Support
+    url: https://www.sarvam.ai
+  version: '1.0'
+servers:
+- url: https://api.sarvam.ai
+security:
+- ApiSubscriptionKey: []
+tags:
+- name: Speech to Text
+paths:
+  /speech-to-text:
+    post:
+      operationId: transcribeSpeech
+      tags:
+      - Speech to Text
+      summary: Transcribe audio to text
+      description: Transcribes an audio file in an Indian language using the Saaras or Saarika speech-recognition models. Supports auto language detection, word-level timestamps, and speaker diarization.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SpeechToTextRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeechToTextResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /speech-to-text-translate:
+    post:
+      operationId: translateSpeech
+      tags:
+      - Speech to Text
+      summary: Transcribe and translate audio to English
+      description: Transcribes Indic-language audio and translates the result into English in a single request using the Saaras family of models.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SpeechToTextTranslateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeechToTextResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    SpeechToTextTranslateRequest:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+          description: Audio file to transcribe and translate to English.
+        model:
+          type: string
+          enum:
+          - saaras:v2.5
+          - saaras:v3
+          default: saaras:v2.5
+        prompt:
+          type: string
+          description: Optional context to improve translation quality.
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+    SpeechToTextRequest:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+          description: Audio file (WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, PCM). Optimized for 16kHz.
+        model:
+          type: string
+          enum:
+          - saarika:v2.5
+          - saaras:v3
+          default: saarika:v2.5
+        language_code:
+          type: string
+          description: BCP-47 code (e.g. hi-IN) or "unknown" for auto-detection.
+        mode:
+          type: string
+          description: saaras:v3 only.
+          enum:
+          - transcribe
+          - translate
+          - verbatim
+          - translit
+          - codemix
+        input_audio_codec:
+          type: string
+          description: Required only for PCM files.
+          enum:
+          - pcm_s16le
+          - pcm_l16
+          - pcm_raw
+    SpeechToTextResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        transcript:
+          type: string
+        language_code:
+          type: string
+        language_probability:
+          type: number
+        timestamps:
+          type: object
+          description: Word-level timing data when requested.
+        diarized_transcript:
+          type: object
+          description: Speaker-attributed segments when diarization is enabled.
+  responses:
+    Unauthorized:
+      description: Missing or invalid api-subscription-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiSubscriptionKey:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+      description: API subscription key created in the Sarvam AI dashboard.
