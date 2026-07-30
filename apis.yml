@@ -8,7 +8,20 @@ description: Sarvam AI is India's full-stack sovereign AI platform building larg
   Saarika), text-to-speech (Bulbul), translation (Mayura / Sarvam-Translate),
   transliteration, and language identification across 10-22 Indic languages via a
   REST interface using an api-subscription-key header.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sarvam-ai.png
 tags:
 - AI
 - LLM
@@ -20,151 +33,247 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: sarvam-ai:sarvam-ai-chat-completions-api
-  name: Sarvam AI Chat Completions (LLM) API
-  tags:
-  - Chat
-  - Completions
-  - LLM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: sarvam-ai:sarvam-ai-chat-api
+  name: Sarvam AI Chat API
+  description: The Chat API from Sarvam AI — 1 operation(s) for chat.
   humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
   baseURL: https://api.sarvam.ai
-  properties:
-  - url: https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion/overview
-    type: Documentation
-  - url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
-    type: APIReference
-  - url: openapi/sarvam-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/sarvam-ai.postman_collection.json
-    type: PostmanCollection
-  - url: asyncapi/sarvam-ai-asyncapi.yml
-    type: AsyncAPI
-  description: OpenAI-style chat completions over Sarvam's Indic LLMs (Sarvam-M,
-    Sarvam-30B, Sarvam-105B) with streaming, tool use, reasoning effort, and
-    wiki-grounding for Indian-language reasoning and conversation.
-- aid: sarvam-ai:sarvam-ai-speech-to-text-api
-  name: Sarvam AI Speech-to-Text API
   tags:
-  - Speech to Text
-  - Transcription
-  - ASR
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
-  baseURL: https://api.sarvam.ai
+  - Chat
   properties:
-  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
-    type: Documentation
-  - url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
-    type: APIReference
-  - url: openapi/sarvam-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/sarvam-ai.postman_collection.json
-    type: PostmanCollection
-  description: Multipart audio transcription for Indian languages using the Saaras
-    and Saarika speech-recognition models, with auto language detection, word
-    timestamps, and speaker diarization.
-- aid: sarvam-ai:sarvam-ai-speech-to-text-translate-api
-  name: Sarvam AI Speech-to-Text Translate API
-  tags:
-  - Speech to Text
-  - Translation
-  - ASR
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
-  baseURL: https://api.sarvam.ai
-  properties:
-  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
-    type: Documentation
-  - url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
-    type: APIReference
-  - url: openapi/sarvam-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/sarvam-ai.postman_collection.json
-    type: PostmanCollection
-  description: Transcribes Indic-language audio and translates the result into
-    English in a single multipart request using the Saaras family of models.
-- aid: sarvam-ai:sarvam-ai-text-to-speech-api
-  name: Sarvam AI Text-to-Speech API
-  tags:
-  - Text to Speech
-  - Audio
-  - Bulbul
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
-  baseURL: https://api.sarvam.ai
-  properties:
-  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
-    type: Documentation
-  - url: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
-    type: APIReference
-  - url: openapi/sarvam-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/sarvam-ai.postman_collection.json
-    type: PostmanCollection
-  description: Natural-voice speech synthesis for Indian languages using the Bulbul
-    models (v2 and v3) with 30+ speakers, configurable pace, pitch, sample rate,
-    and multiple output audio codecs, billed per 10,000 characters.
-- aid: sarvam-ai:sarvam-ai-translate-api
-  name: Sarvam AI Translate API
-  tags:
-  - Translation
-  - Text
-  - Mayura
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.sarvam.ai/api-reference-docs/text/translate
-  baseURL: https://api.sarvam.ai
-  properties:
-  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/translate
-    type: Documentation
-  - url: https://docs.sarvam.ai/api-reference-docs/text/translate
-    type: APIReference
-  - url: openapi/sarvam-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/sarvam-ai.postman_collection.json
-    type: PostmanCollection
-  description: Text translation across Indian languages using Mayura (12 languages,
-    multiple tones) and Sarvam-Translate (all 22 scheduled languages), with tone
-    modes, output-script control, and numeral formatting.
-- aid: sarvam-ai:sarvam-ai-transliterate-api
-  name: Sarvam AI Transliterate API
-  tags:
-  - Transliteration
-  - Script Conversion
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.sarvam.ai/api-reference-docs/text/transliterate
-  baseURL: https://api.sarvam.ai
-  properties:
-  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/transliterate
-    type: Documentation
-  - url: https://docs.sarvam.ai/api-reference-docs/text/transliterate
-    type: APIReference
-  - url: openapi/sarvam-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/sarvam-ai.postman_collection.json
-    type: PostmanCollection
-  description: Converts text between scripts while preserving the same language,
-    with spoken-form conversion and international or native numeral formatting.
-- aid: sarvam-ai:sarvam-ai-language-id-api
+  - type: OpenAPI
+    url: openapi/sarvam-ai-chat-api-openapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion/overview
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  - type: PostmanCollection
+    url: collections/sarvam-ai.postman_collection.json
+  - type: AsyncAPI
+    url: asyncapi/sarvam-ai-asyncapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/translate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/transliterate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/transliterate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-lid
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/identify-language
+- aid: sarvam-ai:sarvam-ai-language-identification-api
   name: Sarvam AI Language Identification API
+  description: >-
+    The Language Identification API from Sarvam AI — 1 operation(s) for language identification.
+  humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  baseURL: https://api.sarvam.ai
   tags:
   - Language Identification
-  - Detection
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.sarvam.ai/api-reference-docs/text/identify-language
-  baseURL: https://api.sarvam.ai
   properties:
-  - url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-lid
-    type: Documentation
-  - url: https://docs.sarvam.ai/api-reference-docs/text/identify-language
-    type: APIReference
-  - url: openapi/sarvam-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/sarvam-ai.postman_collection.json
-    type: PostmanCollection
-  description: Automatically detects the language and script of input text, returning
-    BCP-47 language and script codes for routing to the appropriate Indic-language
-    model.
+  - type: OpenAPI
+    url: openapi/sarvam-ai-language-identification-api-openapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion/overview
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  - type: PostmanCollection
+    url: collections/sarvam-ai.postman_collection.json
+  - type: AsyncAPI
+    url: asyncapi/sarvam-ai-asyncapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/translate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/transliterate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/transliterate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-lid
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/identify-language
+- aid: sarvam-ai:sarvam-ai-speech-to-text-api
+  name: Sarvam AI Speech to Text API
+  description: The Speech to Text API from Sarvam AI — 2 operation(s) for speech to text.
+  humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  baseURL: https://api.sarvam.ai
+  tags:
+  - Speech to Text
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-ai-speech-to-text-api-openapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion/overview
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  - type: PostmanCollection
+    url: collections/sarvam-ai.postman_collection.json
+  - type: AsyncAPI
+    url: asyncapi/sarvam-ai-asyncapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/translate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/transliterate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/transliterate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-lid
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/identify-language
+- aid: sarvam-ai:sarvam-ai-text-to-speech-api
+  name: Sarvam AI Text to Speech API
+  description: The Text to Speech API from Sarvam AI — 1 operation(s) for text to speech.
+  humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  baseURL: https://api.sarvam.ai
+  tags:
+  - Text to Speech
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-ai-text-to-speech-api-openapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion/overview
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  - type: PostmanCollection
+    url: collections/sarvam-ai.postman_collection.json
+  - type: AsyncAPI
+    url: asyncapi/sarvam-ai-asyncapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/translate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/transliterate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/transliterate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-lid
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/identify-language
+- aid: sarvam-ai:sarvam-ai-translate-api
+  name: Sarvam AI Translate API
+  description: The Translate API from Sarvam AI — 1 operation(s) for translate.
+  humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  baseURL: https://api.sarvam.ai
+  tags:
+  - Translate
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-ai-translate-api-openapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion/overview
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  - type: PostmanCollection
+    url: collections/sarvam-ai.postman_collection.json
+  - type: AsyncAPI
+    url: asyncapi/sarvam-ai-asyncapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/translate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/transliterate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/transliterate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-lid
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/identify-language
+- aid: sarvam-ai:sarvam-ai-transliterate-api
+  name: Sarvam AI Transliterate API
+  description: The Transliterate API from Sarvam AI — 1 operation(s) for transliterate.
+  humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  baseURL: https://api.sarvam.ai
+  tags:
+  - Transliterate
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-ai-transliterate-api-openapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion/overview
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
+  - type: PostmanCollection
+    url: collections/sarvam-ai.postman_collection.json
+  - type: AsyncAPI
+    url: asyncapi/sarvam-ai-asyncapi.yml
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/speech-to-text
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/speech-to-text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-to-speech
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text-to-speech/convert
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/translate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/translate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/transliterate
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/transliterate
+  - type: Documentation
+    url: https://docs.sarvam.ai/api-reference-docs/endpoints/text-lid
+  - type: APIReference
+    url: https://docs.sarvam.ai/api-reference-docs/text/identify-language
 common:
 - type: AgenticAccess
   url: agentic-access/sarvam-ai-agentic-access.yml
