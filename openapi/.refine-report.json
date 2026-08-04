@@ -1,0 +1,24 @@
+{
+  "provider": "sarvam-ai",
+  "sources": [
+    "sarvam-ai-chat-api-openapi.yml",
+    "sarvam-ai-language-identification-api-openapi.yml",
+    "sarvam-ai-speech-to-text-api-openapi.yml",
+    "sarvam-ai-text-to-speech-api-openapi.yml",
+    "sarvam-ai-translate-api-openapi.yml",
+    "sarvam-ai-transliterate-api-openapi.yml"
+  ],
+  "outputs": [
+    "sarvam-ai-chat-api-openapi.yml",
+    "sarvam-ai-language-identification-api-openapi.yml",
+    "sarvam-ai-speech-to-text-api-openapi.yml",
+    "sarvam-ai-text-to-speech-api-openapi.yml",
+    "sarvam-ai-translate-api-openapi.yml",
+    "sarvam-ai-transliterate-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
