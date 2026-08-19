@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sarvam AI Chat Translate API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-subscription-key",
+      "value": "{{api-subscription-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Translate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Translate text between Indian languages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/translate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Translates text across Indian languages using Mayura (12 languages, multiple tones) or Sarvam-Translate (all 22 scheduled languages), with tone modes, output-script control, and numeral formatting."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sarvam AI Chat Speech to Text API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-subscription-key",
+      "value": "{{api-subscription-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Speech to Text",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transcribe audio to text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Transcribes an audio file in an Indian language using the Saaras or Saarika speech-recognition models. Supports auto language detection, word-level timestamps, and speaker diarization."
+        },
+        {
+          "info": {
+            "name": "Transcribe and translate audio to English",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text-translate",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Transcribes Indic-language audio and translates the result into English in a single request using the Saaras family of models."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

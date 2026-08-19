@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "2e084f75-6159-457e-bfdd-0a256c6562b1",
+      "name": "Translate",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85ab8c0d-a5c7-4709-b0d4-3cfe1b140218",
+          "name": "Translate text between Indian languages",
+          "request": {
+            "name": "Translate text between Indian languages",
+            "description": {
+              "content": "Translates text across Indian languages using Mayura (12 languages, multiple tones) or Sarvam-Translate (all 22 scheduled languages), with tone modes, output-script control, and numeral formatting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"source_language_code\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker_gender\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"model\": \"<string>\",\n  \"output_script\": \"<string>\",\n  \"numerals_format\": \"international\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c997b99e-60c3-474e-ac5a-c6bb501cf30e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"source_language_code\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker_gender\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"model\": \"<string>\",\n  \"output_script\": \"<string>\",\n  \"numerals_format\": \"international\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"translated_text\": \"string\",\n  \"source_language_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9b21a46-8221-4c6c-98a7-9dcf2d228d48",
+              "name": "Missing or invalid api-subscription-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"source_language_code\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker_gender\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"model\": \"<string>\",\n  \"output_script\": \"<string>\",\n  \"numerals_format\": \"international\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c08e3166-8a1a-43bb-9afc-11113f98a9ad",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"source_language_code\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker_gender\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"model\": \"<string>\",\n  \"output_script\": \"<string>\",\n  \"numerals_format\": \"international\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sarvam.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-subscription-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "09d98a4c-fd2f-450f-85c4-721870723bb2",
+    "name": "Sarvam AI Chat Translate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.\n\nContact Support:\n Name: Sarvam AI Support",
+      "type": "text/plain"
+    }
+  }
+}

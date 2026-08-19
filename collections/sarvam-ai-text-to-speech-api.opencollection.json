@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sarvam AI Chat Text to Speech API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-subscription-key",
+      "value": "{{api-subscription-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text to Speech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert text to speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-to-speech",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Synthesizes natural speech for Indian languages using the Bulbul models (v2, v3) with 30+ speakers and configurable pace, pitch, sample rate, and output audio codec. Returns base64-encoded audio."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

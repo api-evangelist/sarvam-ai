@@ -1,0 +1,681 @@
+{
+  "item": [
+    {
+      "id": "acfaefc1-fff3-424e-8f40-aeeb6fc51e4e",
+      "name": "Speech to Text",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8ba38e8-f64f-4274-bd8d-6a19a6c56752",
+          "name": "Transcribe audio to text",
+          "request": {
+            "name": "Transcribe audio to text",
+            "description": {
+              "content": "Transcribes an audio file in an Indian language using the Saaras or Saarika speech-recognition models. Supports auto language detection, word-level timestamps, and speaker diarization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) Audio file (WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, PCM). Optimized for 16kHz."
+                },
+                {
+                  "key": "model",
+                  "value": "saarika:v2.5",
+                  "type": "text",
+                  "description": " (This can only be one of saarika:v2.5,saaras:v3)"
+                },
+                {
+                  "key": "language_code",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "BCP-47 code (e.g. hi-IN) or \"unknown\" for auto-detection."
+                },
+                {
+                  "key": "mode",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "saaras:v3 only. (This can only be one of transcribe,translate,verbatim,translit,codemix)"
+                },
+                {
+                  "key": "input_audio_codec",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Required only for PCM files. (This can only be one of pcm_s16le,pcm_l16,pcm_raw)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6aac15ce-a977-41e2-a307-00aec5b4cbd2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file (WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, PCM). Optimized for 16kHz.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of saarika:v2.5,saaras:v3)",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saarika:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "BCP-47 code (e.g. hi-IN) or \"unknown\" for auto-detection.",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "saaras:v3 only. (This can only be one of transcribe,translate,verbatim,translit,codemix)",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Required only for PCM files. (This can only be one of pcm_s16le,pcm_l16,pcm_raw)",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"transcript\": \"string\",\n  \"language_code\": \"string\",\n  \"language_probability\": 5110.359772679134,\n  \"timestamps\": {},\n  \"diarized_transcript\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cee5178-1341-4413-b678-181331aeccf5",
+              "name": "Missing or invalid api-subscription-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file (WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, PCM). Optimized for 16kHz.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of saarika:v2.5,saaras:v3)",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saarika:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "BCP-47 code (e.g. hi-IN) or \"unknown\" for auto-detection.",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "saaras:v3 only. (This can only be one of transcribe,translate,verbatim,translit,codemix)",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Required only for PCM files. (This can only be one of pcm_s16le,pcm_l16,pcm_raw)",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86c41073-633c-4540-a9e2-6565f7e7c368",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file (WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, PCM). Optimized for 16kHz.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of saarika:v2.5,saaras:v3)",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saarika:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "BCP-47 code (e.g. hi-IN) or \"unknown\" for auto-detection.",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "saaras:v3 only. (This can only be one of transcribe,translate,verbatim,translit,codemix)",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Required only for PCM files. (This can only be one of pcm_s16le,pcm_l16,pcm_raw)",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c8cb7ed-091c-4a67-b99e-5709e1620763",
+          "name": "Transcribe and translate audio to English",
+          "request": {
+            "name": "Transcribe and translate audio to English",
+            "description": {
+              "content": "Transcribes Indic-language audio and translates the result into English in a single request using the Saaras family of models.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text-translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) Audio file to transcribe and translate to English."
+                },
+                {
+                  "key": "model",
+                  "value": "saaras:v2.5",
+                  "type": "text",
+                  "description": " (This can only be one of saaras:v2.5,saaras:v3)"
+                },
+                {
+                  "key": "prompt",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Optional context to improve translation quality."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "95573ea7-9f20-47b4-b05c-cd3b11322fbf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to transcribe and translate to English.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of saaras:v2.5,saaras:v3)",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional context to improve translation quality.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"transcript\": \"string\",\n  \"language_code\": \"string\",\n  \"language_probability\": 5110.359772679134,\n  \"timestamps\": {},\n  \"diarized_transcript\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab180514-1a8c-499d-8c2a-5bd1ca2d50ba",
+              "name": "Missing or invalid api-subscription-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to transcribe and translate to English.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of saaras:v2.5,saaras:v3)",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional context to improve translation quality.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3edc9415-b550-441c-b414-9dafb34cc744",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to transcribe and translate to English.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of saaras:v2.5,saaras:v3)",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional context to improve translation quality.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sarvam.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-subscription-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a18c47ed-989a-4995-9ee7-aebaa9dd2be8",
+    "name": "Sarvam AI Chat Speech to Text API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.\n\nContact Support:\n Name: Sarvam AI Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sarvam AI Chat Transliterate API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-subscription-key",
+      "value": "{{api-subscription-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transliterate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transliterate text between scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/transliterate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Converts text between scripts while preserving the same language, with spoken-form conversion and international or native numeral formatting."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

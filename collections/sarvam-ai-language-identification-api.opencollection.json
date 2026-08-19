@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sarvam AI Chat Language Identification API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-subscription-key",
+      "value": "{{api-subscription-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Language Identification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Identify the language of text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-lid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Automatically detects the language and script of input text, returning BCP-47 language and script codes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

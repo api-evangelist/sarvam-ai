@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "1d2cefe2-46cd-4516-b6bb-dd34806da4ea",
+      "name": "Text to Speech",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2569ea25-992e-46f5-a7a3-e325be068f46",
+          "name": "Convert text to speech",
+          "request": {
+            "name": "Convert text to speech",
+            "description": {
+              "content": "Synthesizes natural speech for Indian languages using the Bulbul models (v2, v3) with 30+ speakers and configurable pace, pitch, sample rate, and output audio codec. Returns base64-encoded audio.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text-to-speech"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker\": \"<string>\",\n  \"model\": \"bulbul:v3\",\n  \"pitch\": \"<number>\",\n  \"pace\": 1,\n  \"loudness\": \"<number>\",\n  \"speech_sample_rate\": 24000,\n  \"enable_preprocessing\": false,\n  \"temperature\": 0.6,\n  \"output_audio_codec\": \"wav\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "319c50bf-5aa6-4612-8252-1f5571b790de",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker\": \"<string>\",\n  \"model\": \"bulbul:v3\",\n  \"pitch\": \"<number>\",\n  \"pace\": 1,\n  \"loudness\": \"<number>\",\n  \"speech_sample_rate\": 24000,\n  \"enable_preprocessing\": false,\n  \"temperature\": 0.6,\n  \"output_audio_codec\": \"wav\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"audios\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2b6b9ec-142c-4de7-b169-e626cecf829e",
+              "name": "Missing or invalid api-subscription-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker\": \"<string>\",\n  \"model\": \"bulbul:v3\",\n  \"pitch\": \"<number>\",\n  \"pace\": 1,\n  \"loudness\": \"<number>\",\n  \"speech_sample_rate\": 24000,\n  \"enable_preprocessing\": false,\n  \"temperature\": 0.6,\n  \"output_audio_codec\": \"wav\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c64358f2-be3b-4d1f-9ee5-7ec2ab8feb1e",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-subscription-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker\": \"<string>\",\n  \"model\": \"bulbul:v3\",\n  \"pitch\": \"<number>\",\n  \"pace\": 1,\n  \"loudness\": \"<number>\",\n  \"speech_sample_rate\": 24000,\n  \"enable_preprocessing\": false,\n  \"temperature\": 0.6,\n  \"output_audio_codec\": \"wav\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sarvam.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-subscription-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e309824-fc38-4fd7-a4fb-cf20eaf30e8c",
+    "name": "Sarvam AI Chat Text to Speech API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Sarvam AI, India's full-stack sovereign AI platform. Provides chat completions over Sarvam's Indic LLMs, speech-to-text and speech-to-text-translate, text-to-speech, text translation, transliteration, and language identification across Indian languages. All requests authenticate with an api-subscription-key header.\n\nContact Support:\n Name: Sarvam AI Support",
+      "type": "text/plain"
+    }
+  }
+}
