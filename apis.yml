@@ -23,6 +23,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sarvam-ai.png
 tags:
+- Artificial Intelligence
+- LLM
+- Speech-to-Text
+- Text-to-Speech
+- Translation
+- Indian Languages
+tags_raw:
 - AI
 - LLM
 - Speech to Text
@@ -120,6 +127,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
   baseURL: https://api.sarvam.ai
   tags:
+  - Speech-to-Text
+  tags_raw:
   - Speech to Text
   properties:
   - type: OpenAPI
@@ -160,6 +169,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference-docs/chat/chat-completions
   baseURL: https://api.sarvam.ai
   tags:
+  - Text-to-Speech
+  tags_raw:
   - Text to Speech
   properties:
   - type: OpenAPI
